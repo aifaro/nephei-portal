@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nephei.org - Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* --- Global Styles & Reset --- */
+    :root {
+      --color-bg: #111827; /* Dark Blue-Gray */
+      --color-text: #d1d5db; /* Light Gray */
+      --color-primary: #34d399; /* Emerald Green */
+      --color-card-bg: #1f2937; /* Lighter Blue-Gray */
+      --color-border: #374151; /* Medium Gray */
+      --color-heading: #ffffff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    /* --- Layout & Structure --- */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    header, section, footer {
+      margin-bottom: 3rem;
+    }
+    /* --- Typography --- */
+    h1, h2, h3 {
+      line-height: 1.2;
+      color: var(--color-heading);
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      text-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
+    }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.75rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      max-width: 70ch;
+    }
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    /* --- Header --- */
+    .main-header {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .main-header p {
+      font-size: 1.25rem;
+      max-width: 50ch;
+      margin: 1rem auto 0;
+      opacity: 0.9;
+    }
+    /* --- Resource List Styling --- */
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      text-decoration: none;
+      color: var(--color-text);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    a.resource-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-primary);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .resource-card h3 {
+      font-size: 1.25rem;
+      color: var(--color-heading);
+      margin-bottom: 0.5rem;
+    }
+    .resource-card .description {
+      flex-grow: 1; /* Pushes the URL to the bottom */
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    .resource-card .url-link {
+      font-size: 0.9rem;
+      color: var(--color-primary);
+      font-weight: bold;
+      margin-bottom: 0;
+      align-self: flex-start;
+    }
+    .resource-card.placeholder {
+        background-color: transparent;
+        border-style: dashed;
+        border-width: 2px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0.7;
+    }
+    /* --- Footer --- */
+    .main-footer {
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      padding-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+    
+    .main-footer p {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="main-header">
+      <h1>nephei.org</h1>
+      <p>A collection of projects and resources.</p>
+    </header>
+
+    <main>
+      <section id="resources">
+        <h2>Resources</h2>
+        <div class="resource-list">
+
+          <!-- Card 1: Pluto Website -->
+          <a href="https://pluto.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
+            <h3>Justice for Pluto</h3>
+            <p class="description">An advocacy site arguing for Pluto's status as a planet based on the flawed IAU criteria.</p>
+            <p class="url-link">pluto.nephei.org</p>
+          </a>
+
+          <!-- Card 2: Chinese Songs -->
+          <a href="https://songs.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
+            <h3>Chinese Songs for Learning</h3>
+            <p class="description">A curated list of songs in Mandarin Chinese to help with language acquisition.</p>
+            <p class="url-link">songs.nephei.org</p>
+          </a>
+
+          <!-- Card 3: TTRPG Resources -->
+          <a href="https://rpg.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
+            <h3>TTRPG Resources</h3>
+            <p class="description">A collection of resources, maps, and handouts for tabletop roleplaying games.
+              </p>
+            <p class="url-link">rpg.nephei.org</p>
+          </a>
+
+          <!-- Card 4: Online Music Game -->
+          <a href="https://hitster.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
+            <h3>Online Music Game</h3>
+            <p class="description">A hitster-like game that challenges your music knowledge!</p>
+            <p class="url-link">hitster.nephei.org</p>
+          </a>
+
+          <!-- Placeholder Card for future content -->
+          <div class="resource-card placeholder">
+            <h3>More Coming Soon...</h3>
+            <p class="description">New projects are always in the works. Check back later for more.</p>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <p>&copy; 2026 nephei.org</p>
+    </footer>
+  </div>
+</body>
+</html>

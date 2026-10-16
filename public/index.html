@@ -3,194 +3,275 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>nephei.org - Portal</title>
+  <title>nephei.org</title>
+  <meta name="description" content="Games, tools, tabletop adventures and the odd argument about Pluto. Side projects by nephei.">
+  <meta name="theme-color" content="#0c0f1a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%2334d399'/><circle cx='16' cy='16' r='6' fill='%230c0f1a'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* --- Global Styles & Reset --- */
     :root {
-      --color-bg: #111827; /* Dark Blue-Gray */
-      --color-text: #d1d5db; /* Light Gray */
-      --color-primary: #34d399; /* Emerald Green */
-      --color-card-bg: #1f2937; /* Lighter Blue-Gray */
-      --color-border: #374151; /* Medium Gray */
-      --color-heading: #ffffff;
+      --bg: #0c0f1a;
+      --bg-glow: rgba(52, 211, 153, 0.12);
+      --surface: #141927;
+      --surface-hover: #1a2133;
+      --border: #242c40;
+      --text: #c9d1e0;
+      --muted: #8590a6;
+      --heading: #f4f6fb;
+      --accent: #34d399;
+      --data: #60a5fa;
+      --game: #f59e0b;
+      --tabletop: #c084fc;
+      --language: #f87171;
+      --humor: #38bdf8;
+      --radius: 16px;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7fb;
+        --bg-glow: rgba(16, 185, 129, 0.14);
+        --surface: #ffffff;
+        --surface-hover: #ffffff;
+        --border: #e2e6ef;
+        --text: #3b4357;
+        --muted: #6b7489;
+        --heading: #0f1424;
+        --accent: #059669;
+        --data: #2563eb;
+        --game: #d97706;
+        --tabletop: #9333ea;
+        --language: #dc2626;
+        --humor: #0284c7;
+      }
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background:
+        radial-gradient(60rem 30rem at 15% -10%, var(--bg-glow), transparent 70%),
+        radial-gradient(40rem 25rem at 100% 0%, rgba(96, 165, 250, 0.08), transparent 70%),
+        var(--bg);
+      color: var(--text);
       line-height: 1.6;
-      font-size: 16px;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    /* --- Layout & Structure --- */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Cabecera */
+    header { padding: 5.5rem 0 3.5rem; }
+    .logo {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      color: var(--heading); font-size: 1.05rem; letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
     }
-    header, section, footer {
-      margin-bottom: 3rem;
-    }
-    /* --- Typography --- */
-    h1, h2, h3 {
-      line-height: 1.2;
-      color: var(--color-heading);
+    .logo-mark {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: inset 0 0 0 6px var(--bg);
+      outline: 2px solid var(--accent);
     }
     h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 900;
-      letter-spacing: -2.5px;
-      text-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      color: var(--heading);
+      max-width: 16ch;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+    .intro {
+      margin-top: 1.4rem; font-size: 1.15rem; color: var(--muted); max-width: 52ch;
+    }
+
+    /* Secciones */
+    section { padding-bottom: 3.5rem; }
+    .section-title {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem; margin-bottom: 1.5rem;
     }
     h2 {
-      font-size: clamp(1.8rem, 4vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--color-border);
-      padding-bottom: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted);
     }
-    p {
-      margin-bottom: 1rem;
-      max-width: 70ch;
-    }
-    a {
-      color: var(--color-primary);
-      text-decoration: none;
-    }
-    /* --- Header --- */
-    .main-header {
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    .main-header p {
-      font-size: 1.25rem;
-      max-width: 50ch;
-      margin: 1rem auto 0;
-      opacity: 0.9;
-    }
-    /* --- Resource List Styling --- */
-    .resource-list {
+    .section-note { font-size: 0.85rem; color: var(--muted); }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+      gap: 1rem;
     }
-    .resource-card {
-      display: flex;
-      flex-direction: column;
-      background-color: var(--color-card-bg);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      text-decoration: none;
-      color: var(--color-text);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    .card {
+      --c: var(--accent);
+      position: relative;
+      display: flex; flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.5rem 1.25rem;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
-    a.resource-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--color-primary);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    .card::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
+      background: var(--c); opacity: 0.85;
     }
-    .resource-card h3 {
-      font-size: 1.25rem;
-      color: var(--color-heading);
-      margin-bottom: 0.5rem;
+    .card:hover, .card:focus-visible {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--c) 55%, var(--border));
+      background: var(--surface-hover);
+      box-shadow: 0 14px 40px -18px color-mix(in srgb, var(--c) 60%, transparent);
     }
-    .resource-card .description {
-      flex-grow: 1; /* Pushes the URL to the bottom */
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      opacity: 0.9;
+    .card:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
+
+    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+    .tag {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 0.2rem 0.6rem; border-radius: 999px;
+      color: var(--c);
+      background: color-mix(in srgb, var(--c) 14%, transparent);
     }
-    .resource-card .url-link {
-      font-size: 0.9rem;
-      color: var(--color-primary);
-      font-weight: bold;
-      margin-bottom: 0;
-      align-self: flex-start;
+    .tag.plain { color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }
+
+    .card h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; line-height: 1.2;
+      color: var(--heading); letter-spacing: -0.015em; margin-bottom: 0.5rem;
     }
-    .resource-card.placeholder {
-        background-color: transparent;
-        border-style: dashed;
-        border-width: 2px;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        opacity: 0.7;
+    .card p { font-size: 0.97rem; flex-grow: 1; }
+    .card .url {
+      margin-top: 1.2rem; font-size: 0.85rem; font-weight: 600; color: var(--c);
+      display: flex; align-items: center; gap: 0.35rem;
     }
-    /* --- Footer --- */
-    .main-footer {
-      text-align: center;
-      border-top: 1px solid var(--color-border);
-      padding-top: 2rem;
-      font-size: 0.9rem;
-      opacity: 0.6;
+    .card .url::after { content: "→"; transition: transform 0.2s ease; }
+    .card:hover .url::after { transform: translateX(4px); }
+
+    .data { --c: var(--data); }
+    .game { --c: var(--game); }
+    .tabletop { --c: var(--tabletop); }
+    .language { --c: var(--language); }
+    .humor { --c: var(--humor); }
+
+    /* Proyectos privados */
+    .private-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+      gap: 0.75rem;
     }
-    
-    .main-footer p {
-      margin: 0 auto;
+    .private {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      border: 1px dashed var(--border); border-radius: 12px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .private:hover { border-color: var(--muted); background: var(--surface); }
+    .lock {
+      flex: none; width: 34px; height: 34px; border-radius: 9px;
+      display: grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    }
+    .private strong { display: block; color: var(--heading); font-weight: 600; font-size: 0.95rem; }
+    .private span { font-size: 0.82rem; color: var(--muted); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 0 2.5rem;
+      font-size: 0.85rem; color: var(--muted);
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="main-header">
-      <h1>nephei.org</h1>
-      <p>A collection of projects and resources.</p>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="/"><span class="logo-mark"></span>nephei.org</a>
+      <h1>Side projects, built for <em>fun</em>.</h1>
+      <p class="intro">Games, tools, tabletop adventures and the odd argument about Pluto. Some of it is useful. All of it was fun to make.</p>
     </header>
 
     <main>
-      <section id="resources">
-        <h2>Resources</h2>
-        <div class="resource-list">
+      <section aria-labelledby="projects">
+        <div class="section-title">
+          <h2 id="projects">Projects</h2>
+          <span class="section-note">Some are in Spanish</span>
+        </div>
 
-          <!-- Card 1: Pluto Website -->
-          <a href="https://pluto.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
-            <h3>Justice for Pluto</h3>
-            <p class="description">An advocacy site arguing for Pluto's status as a planet based on the flawed IAU criteria.</p>
-            <p class="url-link">pluto.nephei.org</p>
+        <div class="grid">
+          <a class="card data" href="https://pensiones.nephei.org">
+            <div class="tags"><span class="tag">Data</span><span class="tag plain">Spanish</span></div>
+            <h3>Las cuentas de las pensiones</h3>
+            <p>How much Spain spends on pensions, where the money comes from and what it means for people starting out today. Interactive charts built on official figures, plus a simulator to try balancing the budget yourself.</p>
+            <span class="url">pensiones.nephei.org</span>
           </a>
 
-          <!-- Card 2: Chinese Songs -->
-          <a href="https://songs.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
-            <h3>Chinese Songs for Learning</h3>
-            <p class="description">A curated list of songs in Mandarin Chinese to help with language acquisition.</p>
-            <p class="url-link">songs.nephei.org</p>
+          <a class="card game" href="https://abyla.nephei.org/abyla">
+            <div class="tags"><span class="tag">Game</span><span class="tag plain">Spanish</span></div>
+            <h3>ABYLA</h3>
+            <p>An open-world game that runs in your browser, set in the real city of Ceuta. Wander the isthmus between its two bays, the Royal Walls and the fortress on Monte Hacho.</p>
+            <span class="url">abyla.nephei.org</span>
           </a>
 
-          <!-- Card 3: TTRPG Resources -->
-          <a href="https://rpg.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
+          <a class="card tabletop" href="https://rpg.nephei.org">
+            <div class="tags"><span class="tag">Tabletop RPG</span></div>
             <h3>TTRPG Resources</h3>
-            <p class="description">A collection of resources, maps, and handouts for tabletop roleplaying games.
-              </p>
-            <p class="url-link">rpg.nephei.org</p>
+            <p>Original adventures, maps and handouts for roleplaying games. The current one is <i>La Marca del Estrecho</i>, Pulp Cthulhu in Ceuta in the autumn of 1921.</p>
+            <span class="url">rpg.nephei.org</span>
           </a>
 
-          <!-- Card 4: Online Music Game -->
-          <a href="https://hitster.nephei.org" class="resource-card" target="_blank" rel="noopener noreferrer">
-            <h3>Online Music Game</h3>
-            <p class="description">A hitster-like game that challenges your music knowledge!</p>
-            <p class="url-link">hitster.nephei.org</p>
+          <a class="card language" href="https://songs.nephei.org">
+            <div class="tags"><span class="tag">Languages</span></div>
+            <h3>Chinese Songs for Learning</h3>
+            <p>Silly AI-generated songs written to make HSK vocabulary stick, along with some real ones worth knowing. Every song has lyrics in characters, pinyin and English.</p>
+            <span class="url">songs.nephei.org</span>
           </a>
 
-          <!-- Placeholder Card for future content -->
-          <div class="resource-card placeholder">
-            <h3>More Coming Soon...</h3>
-            <p class="description">New projects are always in the works. Check back later for more.</p>
-          </div>
+          <a class="card humor" href="https://pluto.nephei.org">
+            <div class="tags"><span class="tag">Very serious</span></div>
+            <h3>Justice for Pluto</h3>
+            <p>Pluto was a planet for 76 years, until a vote in 2006 decided otherwise. This is the case for giving it its title back.</p>
+            <span class="url">pluto.nephei.org</span>
+          </a>
+        </div>
+      </section>
 
+      <section aria-labelledby="private">
+        <div class="section-title">
+          <h2 id="private">Friends &amp; family</h2>
+          <span class="section-note">Sign-in required</span>
+        </div>
+        <div class="private-list">
+          <a class="private" href="https://hitster.nephei.org">
+            <span class="lock" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <span><strong>Hitster</strong><span>Guess the year a song came out</span></span>
+          </a>
+          <a class="private" href="https://dice.nephei.org">
+            <span class="lock" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <span><strong>El Favor del Faraón</strong><span>A dice game, played online</span></span>
+          </a>
+          <a class="private" href="https://dnd.nephei.org">
+            <span class="lock" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <span><strong>D&amp;D character sheets</strong><span>Our group's characters</span></span>
+          </a>
         </div>
       </section>
     </main>
 
-    <footer class="main-footer">
-      <p>&copy; 2026 nephei.org</p>
+    <footer>
+      <span>&copy; 2026 nephei.org</span>
+      <a href="https://github.com/aifaro">Source on GitHub</a>
     </footer>
   </div>
 </body>

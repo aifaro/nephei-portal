@@ -7,5 +7,9 @@
   "assets": {
     "directory": "./public"
   },
-  "workers_dev": false
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "nephei.org", "custom_domain": true },
+    { "pattern": "www.nephei.org", "custom_domain": true }
+  ]
 }
